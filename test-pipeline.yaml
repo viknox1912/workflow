@@ -1,0 +1,27 @@
+name: "FAST ${{ github.repo.name }}"
+run-name: ${{ github.event_name == 'pull_request' && 'PR Terraform Plan' || 'Terraform Apply' }} by @${{ github.actor }}
+
+on:
+  pull_request:
+    paths:
+      - '**/*.tf'
+      - '**/*.tfvars'
+      - '**/*.hcl'
+      - '!.github/workflows/**'
+      - '!terraform_init.sh'
+      - '!generate_summary.py'
+  workflow_dispatch:
+    inputs:
+      approval_required:
+        description: 'Have you read the plan and are you ready to apply?'
+        required: true
+        default: false
+        type: boolean
+jobs:
+  plan-test:
+    steps:
+    - id: hello-world
+      
+  apply-test:
+    steps:
+    - id: hello-world
